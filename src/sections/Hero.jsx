@@ -110,11 +110,11 @@ export const Hero = () => {
           />
 
           <div className="w-full h-full max-w-[430px] relative z-0 flex justify-center items-end rounded-t-[180px] rounded-b-3xl overflow-hidden border border-white/15 group-hover:border-accent/40 transition-colors duration-500 bg-black/60 shadow-2xl shadow-black/70">
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-white/5 z-10 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/15 z-10 pointer-events-none" />
             <img
               src={heroImage}
               alt={resumeData.personal.name}
-              className="w-full h-full object-cover object-top grayscale contrast-115 brightness-95 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
+              className="w-full h-full object-cover object-top grayscale contrast-125 brightness-95 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
             />
           </div>
         </motion.div>

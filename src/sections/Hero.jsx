@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { resumeData } from '../data/resume';
 import { FaGithub, FaLinkedin, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
-import heroImage from '../assets/hero.png';
+import heroImage from '../assets/portrait.jpeg';
 
 export const Hero = () => {
   const stats = [
@@ -96,19 +96,25 @@ export const Hero = () => {
           </div>
         </motion.div>
 
+        {/* Right Content — Classy B&W Portrait Frame */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, delay: 0.35, ease: 'easeOut' }}
-          className="relative flex justify-center items-center h-[520px]"
+          initial={{ opacity: 0, scale: 0.94, y: 16 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.3, ease: 'easeOut' }}
+          className="relative flex justify-center items-center h-[520px] group"
         >
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75%] h-[75%] bg-accent/20 rounded-full blur-[90px] -z-10" />
-          <div className="w-full h-full relative z-0 flex justify-center items-end border-b-2 border-accent/40 rounded-b-full overflow-hidden glass shadow-2xl shadow-accent/10">
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 rounded-b-full" />
+          <motion.div
+            animate={{ scale: [1, 1.06, 1], opacity: [0.55, 0.8, 0.55] }}
+            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[78%] h-[78%] bg-accent/20 rounded-full blur-[95px] -z-10"
+          />
+
+          <div className="w-full h-full max-w-[430px] relative z-0 flex justify-center items-end rounded-t-[180px] rounded-b-3xl overflow-hidden border border-white/15 group-hover:border-accent/40 transition-colors duration-500 bg-black/60 shadow-2xl shadow-black/70">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-white/5 z-10 pointer-events-none" />
             <img
               src={heroImage}
               alt={resumeData.personal.name}
-              className="w-full h-full object-cover object-top relative z-0 transition-transform duration-700 hover:scale-105"
+              className="w-full h-full object-cover object-top grayscale contrast-115 brightness-95 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
             />
           </div>
         </motion.div>

@@ -11,7 +11,7 @@ export const resumeData = {
     email: "cmkeerthanapdm@gmail.com",
     linkedin: "linkedin.com/in/keerthana-chandirasekar-189a55328",
     github: "github.com/cmkeerthz",
-    bio: "Software Development Engineer with hands-on internship experience building scalable web applications, REST APIs, and database-backed systems using React.js, Node.js, Express.js, FastAPI, Python, and SQL/NoSQL databases, with practical integration of AI and data-driven features."
+    bio: "Software Development Engineer with hands-on internship experience designing scalable web applications, REST APIs, and database-driven systems using React.js, Node.js, Express.js, FastAPI, Python, and SQL/NoSQL databases, with practical integration of AI and data-driven features."
   },
   skills: {
     frontend: [
@@ -119,9 +119,9 @@ export const resumeData = {
       demo: "#"
     },
     {
-      name: "Social Platform & Portfolio Builds",
+      name: "Social Platform & Web Builds",
       tech: ["React.js", "JavaScript", "HTML5", "CSS3"],
-      description: "Responsive full-stack and frontend web builds developed during full-stack engineering internships and personal software builds.",
+      description: "Responsive full-stack and frontend web builds developed during software engineering internships and personal projects.",
       github: "https://github.com/cmkeerthz/Social_Platform",
       demo: "#"
     }

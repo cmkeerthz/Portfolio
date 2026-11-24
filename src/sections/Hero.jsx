@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { resumeData } from '../data/resume';
 import { FaGithub, FaLinkedin, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
-import heroImage from '../assets/hero-image.png';
+import heroImage from '../assets/hero.png';
 
 export const Hero = () => {
   const stats = [

@@ -69,7 +69,7 @@ export const Projects = () => {
             transition={{ delay: 0.2 }}
             className="text-gray-500 mt-4 max-w-xl mx-auto text-sm"
           >
-            Full-stack applications, backend APIs, database architectures, and AI systems—click the GitHub icon on any card to view its code.
+            Full-stack applications, backend APIs, database architectures, and AI systems—click the GitHub icon on any card to view its repository.
           </motion.p>
         </div>
 

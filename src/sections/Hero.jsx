@@ -52,7 +52,7 @@ export const Hero = () => {
 
           {/* Bio excerpt */}
           <p className="text-gray-400 leading-relaxed max-w-lg text-base">
-            Full Stack Developer with hands-on internship experience building responsive, database-driven web applications using React.js, Node.js, Express.js, and both SQL and NoSQL databases.
+            {resumeData.personal.bio}
           </p>
 
           {/* Location */}
@@ -121,7 +121,7 @@ export const Hero = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 rounded-b-full" />
             <img
               src={heroImage}
-              alt="Keerthana C"
+              alt={resumeData.personal.name}
               className="w-full h-full object-cover object-bottom relative z-0 transition-transform duration-700 hover:scale-105"
             />
           </div>
@@ -146,8 +146,8 @@ export const Hero = () => {
             className="absolute bottom-20 -left-4 md:-left-10 glass rounded-2xl px-5 py-4 max-w-[200px] border border-white/10 shadow-xl hidden md:block"
           >
             <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Research Intern</p>
-            <p className="text-xs text-white font-semibold leading-tight">Bharat Search Education & Research Center</p>
-            <span className="inline-block mt-1.5 px-2 py-0.5 text-[10px] bg-accent/10 text-accent rounded-full border border-accent/20">Ongoing</span>
+            <p className="text-xs text-white font-semibold leading-tight">{resumeData.experience[0].company}</p>
+            <span className="inline-block mt-1.5 px-2 py-0.5 text-[10px] bg-accent/10 text-accent rounded-full border border-accent/20">Active</span>
           </motion.div>
         </motion.div>
       </div>

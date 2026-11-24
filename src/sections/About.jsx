@@ -17,16 +17,13 @@ const InfoCard = ({ icon: Icon, label, value, sub }) => (
 );
 
 export const About = () => {
-  const { personal, education } = resumeData;
+  const { personal, education, leadership } = resumeData;
 
   return (
     <section id="about" className="py-28 relative overflow-hidden">
-      {/* Background accent */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -38,17 +35,14 @@ export const About = () => {
             <span className="text-accent tracking-widest uppercase font-medium text-sm">About Me</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold">
-            Innovating at the intersection of{' '}
+            Engineering reliable{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-emerald-400">
-              Web & AI
+              AI & Full-Stack Systems
             </span>
           </h2>
         </motion.div>
 
-        {/* Two-column layout */}
         <div className="grid md:grid-cols-5 gap-14 items-start">
-
-          {/* Left — Bio + Quote */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -56,28 +50,21 @@ export const About = () => {
             transition={{ duration: 0.7 }}
             className="md:col-span-3 space-y-7"
           >
-            {/* Quote block */}
             <div className="border-l-2 border-accent pl-6 py-2">
               <p className="text-2xl font-light text-gray-200 leading-snug italic">
-                "Building seamless digital experiences through code and artificial intelligence."
+                "Turning complex problems into clean APIs, intelligent search, and dependable software."
               </p>
             </div>
 
-            {/* Bio paragraphs */}
             <div className="space-y-4 text-gray-400 text-base leading-relaxed">
-              <p>
-                I'm a Full Stack Developer with hands-on internship experience building responsive, database-driven web applications using React.js, Node.js, Express.js, and both SQL and NoSQL databases.
-              </p>
-              <p>
-                Skilled in designing REST APIs, implementing authentication, and delivering end-to-end features across multiple full-stack projects.
-              </p>
-              <p>
-                I complement this with practical experience integrating AI capabilities such as OCR, NLP, and generative AI into modern web applications. Currently pursuing my <span className="text-white font-medium">B.Tech in Artificial Intelligence and Data Science</span> at{' '}
-                <span className="text-accent">{education[0].institution}</span>, constantly exploring new ways to build scalable, intelligent solutions.
-              </p>
+              <p>{personal.bio}</p>
+              <ul className="space-y-2 pt-1 text-sm text-gray-300 list-disc pl-5">
+                {leadership.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
             </div>
 
-            {/* Education highlight box */}
             <div className="glass rounded-2xl p-6 border border-white/5 mt-4">
               <div className="flex items-center gap-3 mb-4">
                 <FaGraduationCap className="text-accent text-2xl" />
@@ -108,7 +95,6 @@ export const About = () => {
             </div>
           </motion.div>
 
-          {/* Right — Info Cards */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -128,7 +114,6 @@ export const About = () => {
               sub={`${education[0].period} · CGPA ${education[0].cgpa}`}
             />
 
-            {/* CTA */}
             <div className="pt-4">
               <a
                 href={`mailto:${personal.email}`}
@@ -138,7 +123,6 @@ export const About = () => {
               </a>
             </div>
           </motion.div>
-
         </div>
       </div>
     </section>

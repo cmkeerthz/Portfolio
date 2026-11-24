@@ -22,6 +22,7 @@ const ContactLink = ({ icon: Icon, label, value, href }) => (
 
 export const Contact = () => {
   const { personal } = resumeData;
+  const cleanPhone = personal.phone.replace(/[^+\d]/g, '');
   const [status, setStatus] = useState('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const [formData, setFormData] = useState({
@@ -119,7 +120,7 @@ export const Contact = () => {
             <h3 className="text-white font-bold text-lg mb-6">Contact Information</h3>
 
             <ContactLink icon={FaEnvelope} label="Email" value={personal.email} href={`mailto:${personal.email}`} />
-            <ContactLink icon={FaPhone} label="Phone" value={personal.phone} href={`tel:${personal.phone}`} />
+            <ContactLink icon={FaPhone} label="Phone" value={personal.phone} href={`tel:${cleanPhone}`} />
             <ContactLink icon={FaLinkedin} label="LinkedIn" value={personal.name} href={`https://${personal.linkedin}`} />
             <ContactLink icon={FaGithub} label="GitHub" value={personal.github} href={`https://${personal.github}`} />
             <ContactLink icon={FaMapMarkerAlt} label="Location" value={personal.location} href="#contact" />

@@ -3,21 +3,26 @@ import { motion } from 'framer-motion';
 import { resumeData } from '../data/resume';
 import { FaGraduationCap, FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
 
-const InfoCard = ({ icon: Icon, label, value, sub }) => (
-  <div className="flex items-start gap-4 p-5 glass rounded-xl hover:border-accent/20 transition-colors group">
-    <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 group-hover:bg-accent/20 transition-colors">
-      <Icon className="text-accent w-4 h-4" />
+const InfoCard = ({ icon: Icon, label, value, sub, href }) => {
+  const content = (
+    <div className="flex items-start gap-4 p-5 glass rounded-xl hover:border-accent/20 transition-colors group">
+      <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 group-hover:bg-accent/20 transition-colors">
+        <Icon className="text-accent w-4 h-4" />
+      </div>
+      <div>
+        <p className="text-xs text-gray-500 uppercase tracking-wider mb-0.5">{label}</p>
+        <p className="text-white font-medium text-sm leading-snug break-all group-hover:text-accent transition-colors">{value}</p>
+        {sub && <p className="text-xs text-gray-500 mt-0.5">{sub}</p>}
+      </div>
     </div>
-    <div>
-      <p className="text-xs text-gray-500 uppercase tracking-wider mb-0.5">{label}</p>
-      <p className="text-white font-medium text-sm leading-snug break-all">{value}</p>
-      {sub && <p className="text-xs text-gray-500 mt-0.5">{sub}</p>}
-    </div>
-  </div>
-);
+  );
+
+  return href ? <a href={href}>{content}</a> : content;
+};
 
 export const About = () => {
   const { personal, education, leadership } = resumeData;
+  const cleanPhone = personal.phone.replace(/[^+\d]/g, '');
 
   return (
     <section id="about" className="py-28 relative overflow-hidden">
@@ -114,8 +119,8 @@ export const About = () => {
             <h3 className="text-white font-bold text-lg mb-5">Quick Info</h3>
 
             <InfoCard icon={FaMapMarkerAlt} label="Location" value={personal.location} />
-            <InfoCard icon={FaEnvelope} label="Email" value={personal.email} />
-            <InfoCard icon={FaPhone} label="Phone" value={personal.phone} />
+            <InfoCard icon={FaEnvelope} label="Email" value={personal.email} href={`mailto:${personal.email}`} />
+            <InfoCard icon={FaPhone} label="Phone" value={personal.phone} href={`tel:${cleanPhone}`} />
             <InfoCard
               icon={FaGraduationCap}
               label="Degree"
@@ -125,7 +130,7 @@ export const About = () => {
 
             <div className="pt-4">
               <a
-                href={`mailto:${personal.email}`}
+                href="#contact"
                 className="block text-center px-6 py-3.5 bg-accent text-background font-bold rounded-xl hover:shadow-[0_0_20px_rgba(0,230,118,0.4)] transition-all transform hover:-translate-y-0.5 text-sm"
               >
                 Get In Touch

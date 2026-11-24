@@ -15,7 +15,7 @@ const ContactLink = ({ icon: Icon, label, value, href }) => (
     </div>
     <div>
       <p className="text-xs text-gray-500 uppercase tracking-wider mb-0.5">{label}</p>
-      <p className="text-sm text-white font-medium group-hover:text-accent transition-colors">{value}</p>
+      <p className="text-sm text-white font-medium group-hover:text-accent transition-colors break-all">{value}</p>
     </div>
   </a>
 );
@@ -95,7 +95,7 @@ export const Contact = () => {
           >
             Let's build something{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-emerald-400">
-              extraordinary
+              reliable
             </span>
           </motion.h2>
           <motion.p
@@ -105,7 +105,7 @@ export const Contact = () => {
             transition={{ delay: 0.2 }}
             className="text-gray-500 max-w-md mx-auto text-sm"
           >
-            Open to AI/ML, backend, and full-stack engineering roles, internships, and collaborations.
+            Open to Software Engineering (SDE) roles, internships, and technical collaborations.
           </motion.p>
         </div>
 
@@ -141,7 +141,9 @@ export const Contact = () => {
                   <FaPaperPlane className="text-accent text-2xl" />
                 </div>
                 <h4 className="text-white font-bold text-xl mb-2">Message Sent!</h4>
-                <p className="text-gray-400 text-sm mb-5">Thanks for reaching out. I'll get back to you soon.</p>
+                <p className="text-gray-400 text-sm mb-5">
+                  Delivered to {personal.email}. I will get back to you soon.
+                </p>
                 <button
                   type="button"
                   onClick={() => setStatus('idle')}
@@ -187,7 +189,7 @@ export const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     className="w-full bg-background/60 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all placeholder:text-gray-600"
-                    placeholder="Role / Internship / Collaboration"
+                    placeholder="SDE Role / Internship / Collaboration"
                   />
                 </div>
 
@@ -200,7 +202,7 @@ export const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     className="w-full bg-background/60 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all resize-none placeholder:text-gray-600"
-                    placeholder="Tell me about the team or opportunity..."
+                    placeholder="Tell me about the role, team, or project..."
                   />
                 </div>
 

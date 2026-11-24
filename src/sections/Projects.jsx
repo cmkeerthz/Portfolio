@@ -9,11 +9,13 @@ const projectGradients = [
   'from-purple-500/20 via-purple-400/10 to-transparent',
   'from-orange-500/20 via-orange-400/10 to-transparent',
   'from-cyan-500/20 via-cyan-400/10 to-transparent',
+  'from-amber-500/20 via-amber-400/10 to-transparent',
   'from-pink-500/20 via-pink-400/10 to-transparent',
+  'from-teal-500/20 via-teal-400/10 to-transparent',
 ];
 
 const MockUI = ({ name, gradient, index }) => (
-  <div className={`h-48 bg-gradient-to-br ${gradient} border-b border-white/5 relative overflow-hidden flex items-center justify-center`}>
+  <div className={`h-44 bg-gradient-to-br ${gradient} border-b border-white/5 relative overflow-hidden flex items-center justify-center`}>
     <div className="absolute inset-4 rounded-xl bg-background/60 border border-white/10 shadow-2xl flex flex-col overflow-hidden backdrop-blur-sm">
       <div className="h-7 border-b border-white/5 flex items-center px-3 gap-1.5 shrink-0 bg-white/5">
         <div className="w-2 h-2 rounded-full bg-red-500/60" />
@@ -21,9 +23,9 @@ const MockUI = ({ name, gradient, index }) => (
         <div className="w-2 h-2 rounded-full bg-green-500/60" />
         <div className="ml-3 flex-1 h-3 rounded bg-white/5" />
       </div>
-      <div className="flex-1 flex flex-col justify-center items-center gap-2 p-4">
-        <FaCode className="text-accent/30 w-7 h-7" />
-        <p className="text-white/25 text-xs font-mono uppercase tracking-widest text-center">{name}</p>
+      <div className="flex-1 flex flex-col justify-center items-center gap-2 p-3">
+        <FaCode className="text-accent/30 w-6 h-6" />
+        <p className="text-white/25 text-[11px] font-mono uppercase tracking-widest text-center">{name}</p>
       </div>
     </div>
     <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-background/70 border border-white/10 backdrop-blur-sm">
@@ -58,7 +60,7 @@ export const Projects = () => {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-bold"
           >
-            Featured Projects
+            Engineering Projects
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -67,7 +69,7 @@ export const Projects = () => {
             transition={{ delay: 0.2 }}
             className="text-gray-500 mt-4 max-w-xl mx-auto text-sm"
           >
-            AI systems, backend services, databases, and full-stack applications—each linked directly to its repository.
+            Full-stack applications, backend APIs, database architectures, and AI systems—click the GitHub icon on any card to view its code.
           </motion.p>
         </div>
 
@@ -97,7 +99,7 @@ export const Projects = () => {
                       href={project.github}
                       target="_blank"
                       rel="noreferrer"
-                      aria-label={`${project.name} GitHub Repository`}
+                      aria-label={`${project.name} on GitHub`}
                       className="text-gray-400 hover:text-white transition-colors p-1.5 rounded-lg hover:bg-white/5"
                     >
                       <FaGithub className="w-4 h-4" />

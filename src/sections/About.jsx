@@ -10,7 +10,7 @@ const InfoCard = ({ icon: Icon, label, value, sub }) => (
     </div>
     <div>
       <p className="text-xs text-gray-500 uppercase tracking-wider mb-0.5">{label}</p>
-      <p className="text-white font-medium text-sm leading-snug">{value}</p>
+      <p className="text-white font-medium text-sm leading-snug break-all">{value}</p>
       {sub && <p className="text-xs text-gray-500 mt-0.5">{sub}</p>}
     </div>
   </div>
@@ -35,9 +35,9 @@ export const About = () => {
             <span className="text-accent tracking-widest uppercase font-medium text-sm">About Me</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold">
-            Engineering reliable{' '}
+            Architecting scalable{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-emerald-400">
-              AI & Full-Stack Systems
+              Software & Backend Systems
             </span>
           </h2>
         </motion.div>
@@ -52,13 +52,18 @@ export const About = () => {
           >
             <div className="border-l-2 border-accent pl-6 py-2">
               <p className="text-2xl font-light text-gray-200 leading-snug italic">
-                "Turning complex problems into clean APIs, intelligent search, and dependable software."
+                "Writing clean, maintainable code and building reliable software systems from end to end."
               </p>
             </div>
 
             <div className="space-y-4 text-gray-400 text-base leading-relaxed">
               <p>{personal.bio}</p>
-              <ul className="space-y-2 pt-1 text-sm text-gray-300 list-disc pl-5">
+              <p>
+                I focus on structured application design, API reliability, database schema modeling, and shipping practical software for real users while pursuing my{' '}
+                <span className="text-white font-medium">B.Tech in Artificial Intelligence and Data Science</span> at{' '}
+                <span className="text-accent">{education[0].institution}</span>.
+              </p>
+              <ul className="space-y-2 pt-2 text-sm text-gray-300 list-disc pl-5">
                 {leadership.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -83,7 +88,7 @@ export const About = () => {
                 </div>
               </div>
               <div className="mt-4">
-                <p className="text-xs text-gray-500 mb-2 uppercase tracking-wider">Coursework</p>
+                <p className="text-xs text-gray-500 mb-2 uppercase tracking-wider">Core Coursework</p>
                 <div className="flex flex-wrap gap-2">
                   {education[0].coursework.split(',').map((c, i) => (
                     <span key={i} className="text-xs px-3 py-1 bg-accent/10 text-accent rounded-full border border-accent/20">

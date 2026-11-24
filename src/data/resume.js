@@ -1,5 +1,5 @@
-import { FaReact, FaNodeJs, FaPython, FaJava, FaAws, FaGithub, FaDatabase, FaHtml5, FaCss3, FaRobot, FaCode } from 'react-icons/fa';
-import { SiJavascript, SiExpress, SiFastapi, SiMongodb, SiMysql, SiPostman, SiStreamlit, SiScikitlearn, SiTypescript } from 'react-icons/si';
+import { FaReact, FaNodeJs, FaPython, FaJava, FaAws, FaGithub, FaDatabase, FaHtml5, FaCss3, FaRobot, FaCode, FaDocker, FaServer } from 'react-icons/fa';
+import { SiJavascript, SiExpress, SiFastapi, SiMongodb, SiMysql, SiPostman, SiStreamlit, SiScikitlearn, SiTypescript, SiTailwindcss, SiVercel } from 'react-icons/si';
 import { BiNetworkChart } from 'react-icons/bi';
 
 export const resumeData = {
@@ -18,6 +18,7 @@ export const resumeData = {
       { name: "React.js", icon: FaReact },
       { name: "JavaScript", icon: SiJavascript },
       { name: "TypeScript", icon: SiTypescript },
+      { name: "Tailwind CSS", icon: SiTailwindcss },
       { name: "HTML5", icon: FaHtml5 },
       { name: "CSS3", icon: FaCss3 }
     ],
@@ -25,6 +26,7 @@ export const resumeData = {
       { name: "Node.js", icon: FaNodeJs },
       { name: "Express.js", icon: SiExpress },
       { name: "FastAPI", icon: SiFastapi },
+      { name: "REST APIs", icon: FaServer },
       { name: "Python", icon: FaPython },
       { name: "Java", icon: FaJava },
       { name: "C", icon: FaCode }
@@ -37,14 +39,17 @@ export const resumeData = {
     ai: [
       { name: "Generative AI", icon: FaRobot },
       { name: "Machine Learning", icon: SiScikitlearn },
+      { name: "Deep Learning (CNN)", icon: BiNetworkChart },
       { name: "NLP & Semantic Search", icon: BiNetworkChart },
-      { name: "OCR & Vision", icon: BiNetworkChart },
+      { name: "OCR & Computer Vision", icon: BiNetworkChart },
       { name: "Prompt Engineering", icon: BiNetworkChart }
     ],
     tools: [
       { name: "Git & GitHub", icon: FaGithub },
       { name: "Postman", icon: SiPostman },
+      { name: "Docker", icon: FaDocker },
       { name: "AWS", icon: FaAws },
+      { name: "Vercel", icon: SiVercel },
       { name: "Streamlit", icon: SiStreamlit }
     ]
   },
@@ -128,11 +133,12 @@ export const resumeData = {
   ],
   education: [
     {
-      degree: "B.Tech, Artificial Intelligence and Data Science",
+      degree: "B.Tech, Artificial Intelligence and Data Science (3rd Year)",
       institution: "KPR Institute of Engineering and Technology",
       period: "2024 - 2028",
+      yearStatus: "3rd Year Undergraduate",
       cgpa: "8.04 / 10",
-      coursework: "Data Structures, DBMS, Full Stack Development, Cloud Computing, Machine Learning, Data Analytics"
+      coursework: "Data Structures & Algorithms, Object-Oriented Programming (OOP), Operating Systems, Computer Networks, DBMS, Software Engineering, Full Stack Web Development, REST API Design, Cloud Computing, Machine Learning"
     }
   ],
   certifications: [

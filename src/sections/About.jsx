@@ -59,8 +59,8 @@ export const About = () => {
             <div className="space-y-4 text-gray-400 text-base leading-relaxed">
               <p>{personal.bio}</p>
               <p>
-                I focus on structured application design, API reliability, database schema modeling, and shipping practical software for real users while pursuing my{' '}
-                <span className="text-white font-medium">B.Tech in Artificial Intelligence and Data Science</span> at{' '}
+                I focus on structured application design, API reliability, database schema modeling, and shipping practical software for real users while currently in my{' '}
+                <span className="text-white font-medium">3rd Year of B.Tech in Artificial Intelligence and Data Science</span> at{' '}
                 <span className="text-accent">{education[0].institution}</span>.
               </p>
               <ul className="space-y-2 pt-2 text-sm text-gray-300 list-disc pl-5">
@@ -78,6 +78,10 @@ export const About = () => {
               <p className="text-accent font-semibold">{education[0].degree}</p>
               <p className="text-gray-400 text-sm mt-1">{education[0].institution}</p>
               <div className="flex flex-wrap gap-4 mt-4">
+                <div className="bg-white/5 rounded-lg px-4 py-2">
+                  <p className="text-xs text-gray-500 mb-0.5">Year</p>
+                  <p className="text-white text-sm font-medium">{education[0].yearStatus}</p>
+                </div>
                 <div className="bg-white/5 rounded-lg px-4 py-2">
                   <p className="text-xs text-gray-500 mb-0.5">Period</p>
                   <p className="text-white text-sm font-medium">{education[0].period}</p>
@@ -115,7 +119,7 @@ export const About = () => {
             <InfoCard
               icon={FaGraduationCap}
               label="Degree"
-              value="B.Tech — AI & Data Science"
+              value="B.Tech — AI & Data Science (3rd Year)"
               sub={`${education[0].period} · CGPA ${education[0].cgpa}`}
             />
 

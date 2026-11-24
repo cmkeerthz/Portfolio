@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { resumeData } from '../data/resume';
+import { FaEnvelope, FaPhone, FaChevronDown } from 'react-icons/fa';
 
 const navLinks = [
   { name: 'Home', href: '#home' },
@@ -13,126 +14,128 @@ const navLinks = [
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [active, setActive] = useState('Home');
+  const [hireOpen, setHireOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const { personal } = resumeData;
+  const cleanPhone = personal.phone.replace(/[^+\d]/g, '');
+  const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(personal.email)}&su=${encodeURIComponent('SDE / Engineering Opportunity - Keerthana Chandirasekar')}`;
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-
-      // Active section detection
-      const sections = navLinks.map(l => l.href.replace('#', ''));
-      let current = 'home';
-      for (const id of sections) {
-        const el = document.getElementById(id);
-        if (el && window.scrollY >= el.offsetTop - 120) current = id;
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+      const scrollPos = window.scrollY + 200;
+      for (const link of navLinks) {
+        const el = document.querySelector(link.href);
+        if (el && el.offsetTop <= scrollPos && el.offsetTop + el.offsetHeight > scrollPos) {
+          setActive(link.name);
+        }
       }
-      setActiveSection(current);
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setHireOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'glass py-3 shadow-lg shadow-black/20' : 'bg-transparent py-6'
+    <motion.header
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? 'glass py-4 shadow-lg shadow-black/40 border-b border-white/5' : 'py-6 bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-        {/* Logo */}
-        <a href="#home" className="text-2xl font-bold tracking-tighter">
-          <span className="text-white">K</span>
-          <span className="text-accent">.</span>
+        <a href="#home" className="text-2xl font-bold tracking-tighter text-white flex items-center gap-1">
+          <span>K</span>
+          <span className="w-2 h-2 rounded-full bg-accent inline-block animate-pulse" />
         </a>
 
-        {/* Desktop Nav */}
-        <ul className="hidden md:flex items-center space-x-1">
-          {navLinks.map((link) => {
-            const isActive = activeSection === link.href.replace('#', '');
-            return (
-              <li key={link.name}>
-                <a
-                  href={link.href}
-                  className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    isActive ? 'text-accent' : 'text-gray-400 hover:text-white'
-                  }`}
-                >
-                  {isActive && (
-                    <motion.span
-                      layoutId="nav-pill"
-                      className="absolute inset-0 rounded-lg bg-accent/10 border border-accent/20"
-                      transition={{ type: 'spring', duration: 0.4 }}
-                    />
-                  )}
-                  <span className="relative z-10">{link.name}</span>
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+        <nav className="hidden md:flex items-center gap-1">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={() => setActive(link.name)}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                active === link.name
+                  ? 'text-accent bg-accent/10 border border-accent/20'
+                  : 'text-gray-400 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              {link.name}
+            </a>
+          ))}
+        </nav>
 
-        {/* CTA */}
-        <a
-          href={`mailto:${resumeData.personal.email}`}
-          className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-accent text-background text-sm font-bold rounded-full hover:shadow-[0_0_16px_rgba(0,230,118,0.4)] transition-all transform hover:-translate-y-0.5"
-        >
-          Hire Me
-        </a>
-
-        {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden text-white hover:text-accent p-1"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            {mobileMenuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
-      </div>
-
-      {/* Mobile Nav */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass border-t border-white/5"
+        <div className="relative" ref={dropdownRef}>
+          <button
+            type="button"
+            onClick={() => setHireOpen((prev) => !prev)}
+            className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold bg-accent text-background rounded-full hover:shadow-[0_0_20px_rgba(0,230,118,0.5)] transition-all transform hover:-translate-y-0.5"
           >
-            <ul className="flex flex-col px-6 py-5 space-y-1">
-              {navLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="block px-4 py-2.5 text-sm text-gray-300 hover:text-accent hover:bg-white/5 rounded-xl transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-              <li className="pt-3">
+            <span>Hire Me</span>
+            <FaChevronDown className={`w-3 h-3 transition-transform ${hireOpen ? 'rotate-180' : ''}`} />
+          </button>
+
+          <AnimatePresence>
+            {hireOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: 10, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 10, scale: 0.96 }}
+                transition={{ duration: 0.18 }}
+                className="absolute right-0 mt-3 w-72 glass rounded-2xl border border-white/10 shadow-2xl p-2 z-50 bg-[#0d1117]/95 backdrop-blur-xl"
+              >
                 <a
-                  href={`mailto:${resumeData.personal.email}`}
-                  className="block text-center px-5 py-2.5 bg-accent text-background text-sm font-bold rounded-full"
-                  onClick={() => setMobileMenuOpen(false)}
+                  href={gmailComposeUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => setHireOpen(false)}
+                  className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition-colors group"
                 >
-                  Hire Me
+                  <div className="w-9 h-9 rounded-lg bg-accent/15 flex items-center justify-center shrink-0">
+                    <FaEnvelope className="text-accent w-4 h-4" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-white group-hover:text-accent transition-colors">
+                      Compose in Gmail
+                    </p>
+                    <p className="text-xs text-gray-400 truncate max-w-[190px]">{personal.email}</p>
+                  </div>
                 </a>
-              </li>
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+
+                <a
+                  href={`tel:${cleanPhone}`}
+                  onClick={() => setHireOpen(false)}
+                  className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition-colors group mt-1"
+                >
+                  <div className="w-9 h-9 rounded-lg bg-accent/15 flex items-center justify-center shrink-0">
+                    <FaPhone className="text-accent w-4 h-4" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-white group-hover:text-accent transition-colors">
+                      Call Directly
+                    </p>
+                    <p className="text-xs text-gray-400">{personal.phone}</p>
+                  </div>
+                </a>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+    </motion.header>
   );
 };
